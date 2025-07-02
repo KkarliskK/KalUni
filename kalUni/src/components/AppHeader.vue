@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 
 interface Props {
   isAuthenticated: boolean
@@ -12,7 +11,6 @@ const emit = defineEmits<{
   logout: []
 }>()
 
-const router = useRouter()
 const isMobileMenuOpen = ref(false)
 
 const logout = () => {
