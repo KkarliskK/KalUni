@@ -1,7 +1,16 @@
-<script setup lang="ts">
-import { ref } from 'vue'
+<script lang="ts">
+import { ref, defineComponent } from 'vue'
 
-const currentYear = ref(new Date().getFullYear())
+export default defineComponent({
+  name: 'AppFooter',
+  setup() {
+    const currentYear = ref(new Date().getFullYear())
+    
+    return {
+      currentYear
+    }
+  }
+})
 </script>
 
 <template>

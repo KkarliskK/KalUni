@@ -1,25 +1,33 @@
-<script setup lang="ts">
-import { ref } from 'vue'
+<script lang="ts">
+import { ref, defineComponent } from 'vue'
 
-interface Props {
-  isAuthenticated: boolean
-}
+export default defineComponent({
+  name: 'AppHeader',
+  props: {
+    isAuthenticated: {
+      type: Boolean,
+      required: true
+    }
+  },
+  emits: ['logout'],
+  setup(props, { emit }) {
+    const isMobileMenuOpen = ref(false)
 
-const props = defineProps<Props>()
+    const logout = () => {
+      emit('logout')
+    }
 
-const emit = defineEmits<{
-  logout: []
-}>()
+    const toggleMobileMenu = () => {
+      isMobileMenuOpen.value = !isMobileMenuOpen.value
+    }
 
-const isMobileMenuOpen = ref(false)
-
-const logout = () => {
-  emit('logout')
-}
-
-const toggleMobileMenu = () => {
-  isMobileMenuOpen.value = !isMobileMenuOpen.value
-}
+    return {
+      isMobileMenuOpen,
+      logout,
+      toggleMobileMenu
+    }
+  }
+})
 </script>
 
 <template>
@@ -39,7 +47,7 @@ const toggleMobileMenu = () => {
 
         <!-- Desktop Navigation -->
         <div class="items-center hidden space-x-1 md:flex">
-          <template v-if="props.isAuthenticated">
+          <template v-if="isAuthenticated">
             <router-link 
               to="/dashboard" 
               class="flex items-center px-4 py-2 space-x-2 text-sm font-medium text-gray-700 transition-all duration-200 rounded-lg hover:text-indigo-600 hover:bg-indigo-50"
@@ -111,7 +119,7 @@ const toggleMobileMenu = () => {
       class="border-t md:hidden border-gray-200/50 bg-white/95 backdrop-blur-md"
     >
       <div class="px-4 py-4 space-y-2">
-        <template v-if="props.isAuthenticated">
+        <template v-if="isAuthenticated">
           <router-link 
             to="/dashboard" 
             @click="isMobileMenuOpen = false"
