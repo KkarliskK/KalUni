@@ -11,7 +11,9 @@ export default defineComponent({
   },
   emits: ['logout'],
   setup(props, { emit }) {
-    const isMobileMenuOpen = ref(false)
+      const isMobileMenuOpen = ref(false)
+      console.log('Is authenticated:', props.isAuthenticated)
+
 
     const logout = () => {
       emit('logout')
