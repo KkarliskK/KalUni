@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import ReceiptUploader from '../components/ReceiptUploader.vue';
 
 interface Transaction {
   id: string
@@ -68,6 +69,15 @@ const loadTransactions = () => {
   loading.value = false
 }
 
+const saveTransactions = () => {
+  localStorage.setItem('transactions', JSON.stringify(transactions.value))
+}
+
+const handleTransactionAdded = (transaction: Transaction) => {
+  transactions.value.push(transaction)
+  saveTransactions()
+}
+
 onMounted(() => {
   loadTransactions()
 })
@@ -81,59 +91,59 @@ const formatCurrency = (amount: number): string => {
 </script>
 
 <template>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
     <!-- Header -->
     <div class="mb-8">
       <h1 class="text-3xl font-bold text-gray-900">Your Financial Dashboard</h1>
-      <p class="text-gray-600 mt-2">Overview of your financial activity</p>
+      <p class="mt-2 text-gray-600">Overview of your financial activity</p>
     </div>
     
     <!-- Loading state -->
     <div v-if="loading" class="flex items-center justify-center py-20">
-      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <div class="w-12 h-12 border-b-2 border-blue-600 rounded-full animate-spin"></div>
       <span class="ml-3 text-lg text-gray-600">Loading your financial data...</span>
     </div>
     
     <!-- Main content -->
     <div v-else class="space-y-8">
       <!-- Summary cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
         <!-- Income Card -->
-        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
           <div class="flex items-center">
             <div class="flex-shrink-0">
-              <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+              <div class="flex items-center justify-center w-8 h-8 bg-green-100 rounded-full">
                 <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"/>
                 </svg>
               </div>
             </div>
-            <div class="ml-4 flex-1">
-              <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">Total Income</p>
+            <div class="flex-1 ml-4">
+              <p class="text-sm font-medium tracking-wide text-gray-500 uppercase">Total Income</p>
               <p class="text-2xl font-bold text-gray-900">{{ formatCurrency(totalIncome) }}</p>
             </div>
           </div>
         </div>
 
         <!-- Expenses Card -->
-        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
           <div class="flex items-center">
             <div class="flex-shrink-0">
-              <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+              <div class="flex items-center justify-center w-8 h-8 bg-red-100 rounded-full">
                 <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-10.293l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 6.414V10a1 1 0 102 0V6.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"/>
                 </svg>
               </div>
             </div>
-            <div class="ml-4 flex-1">
-              <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">Total Expenses</p>
+            <div class="flex-1 ml-4">
+              <p class="text-sm font-medium tracking-wide text-gray-500 uppercase">Total Expenses</p>
               <p class="text-2xl font-bold text-gray-900">{{ formatCurrency(totalExpenses) }}</p>
             </div>
           </div>
         </div>
 
         <!-- Balance Card -->
-        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
           <div class="flex items-center">
             <div class="flex-shrink-0">
               <div :class="[
@@ -149,8 +159,8 @@ const formatCurrency = (amount: number): string => {
                 </svg>
               </div>
             </div>
-            <div class="ml-4 flex-1">
-              <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">Balance</p>
+            <div class="flex-1 ml-4">
+              <p class="text-sm font-medium tracking-wide text-gray-500 uppercase">Balance</p>
               <p :class="[
                 'text-2xl font-bold',
                 balance >= 0 ? 'text-gray-900' : 'text-red-600'
@@ -159,31 +169,29 @@ const formatCurrency = (amount: number): string => {
           </div>
         </div>
       </div>
+
+      <!-- Receipt Uploader -->
+      <ReceiptUploader @transaction-added="handleTransactionAdded" />
       
       <!-- Recent transactions -->
-      <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+      <div class="bg-white border border-gray-200 rounded-lg shadow-sm">
         <div class="px-6 py-4 border-b border-gray-200">
           <h2 class="text-lg font-medium text-gray-900">Recent Transactions</h2>
         </div>
         
         <div v-if="recentTransactions.length === 0" class="px-6 py-20 text-center">
-          <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-12 h-12 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
           </svg>
           <h3 class="mt-2 text-sm font-medium text-gray-900">No transactions</h3>
-          <p class="mt-1 text-sm text-gray-500">Get started by adding your first transaction.</p>
-          <div class="mt-6">
-            <button class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
-              Add Transaction
-            </button>
-          </div>
+          <p class="mt-1 text-sm text-gray-500">Get started by uploading a receipt or adding your first transaction.</p>
         </div>
         
         <div v-else class="divide-y divide-gray-200">
           <div 
             v-for="transaction in recentTransactions" 
             :key="transaction.id"
-            class="px-6 py-4 hover:bg-gray-50 transition-colors duration-150"
+            class="px-6 py-4 transition-colors duration-150 hover:bg-gray-50"
           >
             <div class="flex items-center justify-between">
               <div class="flex-1 min-w-0">

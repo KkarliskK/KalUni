@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "kalunix",
+  "private_key_id": "be3522c6383cdee13f8548934ef22b2c4ad5aee5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC+4Z405VP/h28T\noVDcgwNF6P2cT2DYt+4VtXWZ9WrXdSDJuac1tq+txgQWMXpvF8JSCgC6FDCSD0ie\nRFxVHLX8B+aV5Evm/KzRcoiyrvL8/bRKvKKdvCcTkhK703GqQ+2v9Y7v+BLAEP+P\nPAcHnQytyJab3LLES3K70hP8u2Peuh7d8WyMk3AqB7UKjFq3oj/S+0uOFbx8JHVq\nR35arQ+Y44hkXxe4CA76fBpDa7C2i8TMgYMJ/p4mYo86zSh9s4L9eE/aA2rAe8Tj\nGXyG/IbRHDO2PCveYgpP1x8E2vXkzyDbtLY+PlDt3spMUFAG2fBFU3JVP1COqrDA\nRQZ2vBmvAgMBAAECggEAD2S+j3sXEeDOmM5GArwfqkANHWsnxXjZa6+QmY2GXXQ5\nF37JxbX2TcgauEREbWuEsX0HbGCiC7iaNwYOtCzc+EN8cwYdB1ArpIOqE07mLBG0\n70bUwaFU1wOZ6Y/QKnA3KoORHWuFVGJXWcPFHvYPxn89gu0cQmK03ZsmUksCbzzl\nNuN7LxGUSmf+Us+LvbiKDjFo/QTI10TCwXAY1sS8FW2YzfzkfneITb72X880SsMb\n6CgAvO+JSEzCJVSkKbcNpm2wqgvRXeSsiO+ArqFb8pKuelNKvQ9z64B4WcAqFrlC\nVBMDNnxc0KubNsWCQBvezooBavlqKMrlpf4Jm1kgoQKBgQDii6rR7vjY8jONxLM+\npnERp7k9j5vYVvNGzA9IQyT28ukVT/r1F6JwbUbdazNU++yWO7wg97sF+gUExWEC\n9Q33TbsGXoUTqAxAhb6yRHsjW7jqWozg8fU5DRWbkRiMNzy5APCDUQ8QTdq1VJhk\ng0tybEgbxOzZ0MEPI8iu7CRn5wKBgQDXsuc8xqRAQ7EWnDo/cUIp3vxYRp6m8AIP\nr6eGnFQDnmYati+WMJpNDqD5tku6b1c64n+hCG193sRhYTIazV5VxaBOtP5+nWJI\nXDqldeKzJo9QPt24rzXrcrWMBkkxLTnF2ttANAUvSuun42XgRo8HSujkSDoJDP0G\nBt5v2Qtm+QKBgD/ETnW/DT6LliVOe6Gj2em9Sy/fz18qwlloMNkHRU1ZfHAqThpU\n5707lRnYBd/i9WooMEEbWgJJqMX6BN9/OMomkAEv88dfous6ej3Vds+yDq+wgz0B\n/iNr4mwigEVfevEcKZbc5x+QuoIV6LtKFZ+EiRt/56c70ku/p8pM38Z7AoGAH2zF\nG6mlDGfQSQcBxXRuu0LtaL8BJjkZU8e3lHj6FHzjS0j3rd3u3QMgmMDiT4shHkcZ\naRCdQxVNbxKGBjmdYMmmDVF5MmEjjH9DXA/Ms2UOxBYkn1+Hb4IKyRexWiTIofa8\nsqHhj35OzurmUMJ23A0h2QBc1Cy8QECH76ujaaECgYANUBDXrZzVNqsa9ZXLh1Fi\nPGXCrq34yXRFyrX6f+FGiogmTB2UX9xwy+dfzA0tBDYbVSlqiDWoRLQhxoocc67x\nTDPKvtCrKISYZBasySuUF9Cgy8abaiv/FnL6TsKyYgtG2yNqSNo7YoAUxMbaHZd9\nS0MIc2m8F6L91Os1LOwR7g==\n-----END PRIVATE KEY-----\n",
+  "client_email": "kalunix@kalunix.iam.gserviceaccount.com",
+  "client_id": "109052063460462620937",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/kalunix%40kalunix.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
